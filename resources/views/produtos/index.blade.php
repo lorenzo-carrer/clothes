@@ -17,7 +17,12 @@
             <th>ID</th>
             <th width="50%">Nome</th>
             <th>Preço</th>
-            <th>Gerenciar</th>
+            @if(Auth::user())
+                @if (Auth::user()->admin == 1)
+                    <th>Gerenciar</th>
+                @endif
+            @endif
+
         </tr>
 
         @foreach($prods as $prod)
@@ -27,10 +32,14 @@
                 <a href="{{ route('produtos.show', $prod) }}">{{$prod->nome}}</a>
             </td>
             <td>R$ {{$prod->preco}}</td>
-            <td>
-                <a href="{{ route('produtos.edit', $prod) }}" class="btn btn-primary btn-sm" role="button"><i class="bi bi-pencil-square"></i> Editar</a>
-                <a href="{{ route('produtos.remove', $prod) }}" class="btn btn-danger btn-sm" role="button"><i class="bi bi-trash"></i> Apagar</a>
-            </td>
+            @if(Auth::user())
+                @if (Auth::user()->admin == 1)
+                    <td>
+                        <a href="{{ route('produtos.edit', $prod) }}" class="btn btn-primary btn-sm" role="button"><i class="bi bi-pencil-square"></i> Editar</a>
+                        <a href="{{ route('produtos.remove', $prod) }}" class="btn btn-danger btn-sm" role="button"><i class="bi bi-trash"></i> Apagar</a>
+                    </td>
+                @endif
+            @endif
         </tr>
         @endforeach
     </table>
