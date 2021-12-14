@@ -47,8 +47,11 @@ class UsuariosController extends Controller
             'password' => ['required'],
             ]);
 
+            //pega o valor do formulario
+            $lembrarMarcado = $form->lembrar;
+            
             // Tenta o login
-            if (Auth::attempt($credenciais))
+            if (Auth::attempt($credenciais,$lembrarMarcado))
             {
                 session()->regenerate();
                 return redirect()->route('home');
