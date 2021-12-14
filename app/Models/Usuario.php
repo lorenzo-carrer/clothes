@@ -4,13 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class Usuario extends Model implements Authenticatable{
+class Usuario extends Authenticatable implements MustVerifyEmail{
 
     protected $hidden = ['password'];
 
     use HasFactory;
+
+    use Notifiable;
 
     public $timestamps = false;
 
