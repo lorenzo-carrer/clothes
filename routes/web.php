@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ProdutosController;
 use App\Http\Controllers\UsuariosController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -54,9 +55,11 @@ Route::get('/logout', [UsuariosController::class, 'logout'])->name('logout');
 Route::get('/email/verify', function () {
     return view('auth.verify-email', ['pagina' => 'verify-email']);
 })->middleware('auth')->name('verification.notice');
-
 Route::get('/email/verify/{id}/{hash}', function
 (EmailVerificationRequest $request) {
     $request->fulfill();
     return redirect()->route('home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
+
+
+Route::get('/profile',[PerfilController::class,'index'])->name('perfil.index');
