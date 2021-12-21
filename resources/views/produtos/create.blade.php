@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-4">
 
-        <form method="post" action="{{ route('produtos.gravar') }}">
+        <form method="post" action="{{ route('produtos.gravar') }}" enctype="multipart/form-data">>
             @csrf
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome</label>
@@ -24,8 +24,14 @@
             </div>
 
             <div class="mb-3">
+            <label for="foto" class="form-label">Foto</label>
+                <input type="file" class="form-control" name="imagem" id="foto">
+            </div>
+
+            <div class="mb-3">
                 <button type="submit" class="btn btn-primary">Gravar</button>
             </div>
+
         </form>
 
     </div>

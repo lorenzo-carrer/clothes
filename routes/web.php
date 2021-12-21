@@ -63,3 +63,8 @@ Route::get('/email/verify/{id}/{hash}', function
 
 
 Route::get('/profile',[PerfilController::class,'index'])->name('perfil.index');
+Route::get('/profile/edit',[PerfilController::class,'edit'])->name('perfil.edit');
+Route::put('/profile/edit', [PerfilController::class, 'update'])->name('perfil.update');
+
+Route::get('/profile/password',[PerfilController::class,'editSenha'])->name('perfil.editSenha');
+Route::put('/profile/password', [PerfilController::class, 'updateSenha'])->name('perfil.updateSenha');
