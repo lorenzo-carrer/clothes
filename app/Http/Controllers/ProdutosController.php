@@ -68,4 +68,17 @@ class ProdutosController extends Controller
         return redirect()->route('produtos');
     }
 
+
+    public function recorte(Produto $prod){
+        return view('produtos.imagem', ['prod' => $prod,'pagina' => 'produtos']);
+    }
+
+    public function editRecorte(Request $form, Produto $prod){
+        $prod->imagem = $form->img;
+
+        $prod->save();
+
+        return redirect()->route('produtos');
+    }
+
 }

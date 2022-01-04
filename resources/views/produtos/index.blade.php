@@ -37,6 +37,7 @@
                     <td>
                         <a href="{{ route('produtos.edit', $prod) }}" class="btn btn-primary btn-sm" role="button"><i class="bi bi-pencil-square"></i> Editar</a>
                         <a href="{{ route('produtos.remove', $prod) }}" class="btn btn-danger btn-sm" role="button"><i class="bi bi-trash"></i> Apagar</a>
+                        <a href="{{ route('produtos.recortar', $prod) }}" class="btn btn-success btn-sm" role="button"><i class="bi bi-trash"></i> Recortar</a>
                     </td>
                 @endif
             @endif

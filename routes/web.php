@@ -68,3 +68,7 @@ Route::put('/profile/edit', [PerfilController::class, 'update'])->name('perfil.u
 
 Route::get('/profile/password',[PerfilController::class,'editSenha'])->name('perfil.editSenha');
 Route::put('/profile/password', [PerfilController::class, 'updateSenha'])->name('perfil.updateSenha');
+
+
+Route::get('/produtos/{prod}/imagem',[ProdutosController::class,'recorte'])->name('produtos.recortar');
+Route::post('/produtos/{prod}/imagem',[ProdutosController::class,'recorte'])->name('produtos.recortarPronto');
