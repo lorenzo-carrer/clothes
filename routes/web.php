@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ImagensController;
+use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ProdutosController;
 use App\Http\Controllers\UsuariosController;
@@ -72,3 +74,9 @@ Route::put('/profile/password', [PerfilController::class, 'updateSenha'])->name(
 
 Route::get('/produtos/{prod}/imagem',[ProdutosController::class,'recorte'])->name('produtos.recortar');
 Route::post('/produtos/{prod}/imagem',[ProdutosController::class,'recorte'])->name('produtos.recortarPronto');
+
+//criando rotas para a galeria
+Route::get('/imagens',[ImagesController::class,'index'])->name('galeria.index');
+Route::get('/imagens/inserir', [ImagesController::class, 'create'])->name('galeria.inserir');
+Route::post('/imagens/inserir', [ImagesController::class, 'insert'])->name('galeria.gravar');
+Route::get('/imagens/{img}', [ImagesController::class, 'show'])->name('galeria.show');
