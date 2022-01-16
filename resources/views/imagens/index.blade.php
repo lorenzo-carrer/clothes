@@ -13,12 +13,12 @@
 
 <div class="row">
     @foreach($imgs as $img)
-    {{var_dump($img)}}
-        <div class="col">
-            <div class ="row">{{$img->titulo}}</div>
-            <div class ="row">
-            <a href="{{route('galeria.show',$img)}}"><img src="{{asset('storage/imagens/' . $img->arquivo)}}"></a></div>
+    <div class="card" style="width: 18rem;">
+        <a href="{{route('galeria.show',$img)}}"><img style="max-height:300px;max-width:300px;" src="{{asset('img/' . $img->arquivo)}}" class="card-img-top" alt="..."></a>
+        <div class="card-body">
+            <h5 class="card-title">{{$img->titulo}}</h5>
         </div>
+    </div>
     @endforeach
 </div>
 @endsection

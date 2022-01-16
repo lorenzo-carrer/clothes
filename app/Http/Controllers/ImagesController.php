@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ImagesController extends Controller
 {
@@ -20,15 +21,26 @@ class ImagesController extends Controller
         return view('imagens.inserir', ['pagina' => 'galeria']);
     }
 
-    public function insert(Request $form)
+    public function insert(Image $img, Request $form)
     {
-        //onde vai ficar as imagens salvas
-        $imagemCaminho = $form->file('arquivo')->store('', 'imagens');
+
         $img = new Image();
 
         $img->titulo = $form->titulo;
         $img->desc = $form->desc;
-        $img->arquivo = $imagemCaminho;
+       
+        // Image Upload
+        if($form->hasFile('arquivo') && $form->file('arquivo')->isValid()) {
+            $requestImage = $form->arquivo;
+            $extension = $requestImage->extension();
+
+            //criptografa o arquivo e torna ele único com o 'strtotime'
+            $imgName = md5($requestImage->getClientoriginalName(). strtotime("now")) . "." . $extension;
+            
+            //vai salvar o arquivo na pasta public
+            $form->arquivo->move(public_path('img/'),$imgName);
+            $img->arquivo = $imgName;
+        }
 
         $img->save();
 
